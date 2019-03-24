@@ -1,0 +1,5 @@
+pipeline:
+  build:
+    image: msoares/qt4-dev:latest
+    commands: make
+    
