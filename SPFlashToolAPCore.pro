@@ -4,8 +4,7 @@ TARGET = flash_tool
 
 TEMPLATE = app
 
-QT    += xmlpatterns
-QT += webkit network
+QT    += xmlpatterns webkit network
 
 DEFINES += QT_NO_CAST_FROM_CAST
 TRANSLATIONS +=Flashtool_en.ts Flashtool_zh_CN.ts Flashtool_zh_TW.ts
@@ -32,7 +31,28 @@ TRANSLATIONS +=Flashtool_en.ts Flashtool_zh_CN.ts Flashtool_zh_TW.ts
 #    DEFINES += "_CRT_SECURE_NO_WARNINGS"
 #}
 
+# copies the given files to the destination directory
+defineTest(copyToDestDir) {
+    files = $$1
+
+    for(FILE, files) {
+        DDIR = $$OUT_PWD
+        FILE = $$PWD/$$FILE
+
+        # Replace slashes in paths with backslashes for Windows
+        win32:FILE ~= s,/,\\,g
+        win32:DDIR ~= s,/,\\,g
+
+        QMAKE_POST_LINK += $$QMAKE_COPY $$quote($$FILE) $$quote($$DDIR) $$escape_expand(\\n\\t)
+    }
+
+    export(QMAKE_POST_LINK)
+}
+
 unix:{
+    isEmpty(PREFIX) {
+      PREFIX = /usr/local
+    }
     DEFINES += "_LINUX"
     QMAKE_LFLAGS += -Wl,-rpath,.
     QMAKE_LFLAGS += -Wl,-rpath,lib
@@ -47,6 +67,7 @@ unix:{
 
     INSTALLS += shortcutfiles
     INSTALLS += data
+
 }
 
 INSTALLS += target
@@ -450,7 +471,33 @@ linux:HEADERS += Linux/WINDEF.H \
     Host/Linux/DeviceScan.h
 
 OTHER_FILES += Lib/FlashToolLib.lib \
-    Rules/image_map.xml
+    Lib/DA_PL_CRYPTO20.bin \
+    Lib/DA_PL.bin \
+    Lib/DA_SWSEC_CRYPTO20.bin \
+    Lib/DA_SWSEC.bin \
+    Lib/MTK_AllInOne_DA.bin \
+    Lib/flash_tool.sh \
+    Lib/flashtool.qch \
+    Lib/flashtool.qhc \
+    Lib/console_mode.xsd \
+    Lib/dl_without_scatter.xml \
+    Lib/rb_without_scatter.xml \
+    Lib/platform.xml \
+    Lib/storage_setting.xml \
+    Lib/usb_setting.xml \
+    Lib/BromAdapterTool.ini \
+    Lib/CustPT.ini \
+    Lib/download_scene.ini \
+    Lib/key.ini \
+    Lib/option.ini \
+    Lib/registry.ini
+
+copyToDestDir($$OTHER_FILES)
+
+runtime_files.files = $$OTHER_FILES
+runtime_files.path = $$PREFIX/bin
+
+INSTALLS += runtime_files
 
 FORMS += \
     UI/forms/SecuritySettingDialog.ui \
