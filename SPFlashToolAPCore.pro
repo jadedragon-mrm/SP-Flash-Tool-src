@@ -36,7 +36,17 @@ unix:{
     QMAKE_LFLAGS += -Wl,-rpath,.
     QMAKE_LFLAGS += -Wl,-rpath,lib
     QMAKE_LFLAGS += -Wl,-rpath,qt
+
+    shortcutfiles.files = Linux/feedthemonkey.desktop
+    shortcutfiles.path = $$PREFIX/share/applications/
+    data.files += Linux/feedthemonkey.xpm
+    data.path = $$PREFIX/share/pixmaps/
+
+    INSTALLS += shortcutfiles
+    INSTALLS += data
 }
+
+INSTALLS += target
 
 win32:LIBS += -L$$quote($$PWD/lib) \
     -L$$quote($$PWD/lib/QtWin) \
@@ -177,7 +187,7 @@ SOURCES += \
     Setting/ComboFormatSetting.cpp \
     Cmd/ComboFormatCommand.cpp \
     Cmd/BromAdapterCommand.cpp \
-    Arg/BromAdapterArg.cpp \ 
+    Arg/BromAdapterArg.cpp \
     Setting/BromAdapterSetting.cpp \
     Public/RomInfoFactory.cpp \
     UI/src/SDMMCWidget.cpp \
@@ -380,7 +390,7 @@ HEADERS += \
     UI/src/BromAdapterWidget.h \
     Setting/BromAdapterSetting.h \
     Cmd/BromAdapterCommand.h \
-    Arg/BromAdapterArg.h \ 
+    Arg/BromAdapterArg.h \
     BootRom/SLA_Challenge.h \
     Setting/ComboFormatSetting.h \
     Cmd/ComboFormatCommand.h \
