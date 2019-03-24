@@ -37,6 +37,8 @@ unix:{
     QMAKE_LFLAGS += -Wl,-rpath,lib
     QMAKE_LFLAGS += -Wl,-rpath,qt
 
+    target.path = $$PREFIX/bin
+
     shortcutfiles.files = Linux/spflashtool.desktop
     shortcutfiles.path = $$PREFIX/share/applications/
     data.files += Linux/spflashtool.xpm

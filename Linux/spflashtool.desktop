@@ -1,12 +1,7 @@
 [Desktop Entry]
-Version=5.1728
+Type=Application
+Name=SP Flash Tool
 Comment=MediaTek SP Flash Tool
 Exec=flash_tool
-GenericName=SP Flash Tool
-Icon=flashtool
-Name=SPFlashTool
-NoDisplay=false
-StartupNotify=true
-Terminal=false
-Type=Application
-Categories=Tools;Qt
+Icon=spflashtool
+Categories=Office;Qt;
