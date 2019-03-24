@@ -1,36 +1,37 @@
-# -------------------------------------------------
-# Project created by QtCreator 2011-08-01T21:54:23
-# -------------------------------------------------
-#QT += core
-#QT -= gui
+
+
 TARGET = flash_tool
+
+TEMPLATE = app
+
 QT    += xmlpatterns
 QT += webkit network
-#QT += testlib
 
-# CONFIG   += console
-#CONFIG -= app_bundle
 DEFINES += QT_NO_CAST_FROM_CAST
 TRANSLATIONS +=Flashtool_en.ts Flashtool_zh_CN.ts Flashtool_zh_TW.ts
-TEMPLATE = app
-win32:RELEASE_LIBRARY_FILES += $$PWD/Lib/*.lib $$PWD/lib/*.dll $$PWD/Lib/QtWin/*.lib $$PWD/lib/QtWin/*.dll
-unix:RELEASE_LIBRARY_FILES += $$PWD/Lib/*.so* $$PWD/Lib/QtLinux/*.so*
-win32:TARGET_FILE = $$quote($$OUT_PWD)/release/flash_tool.exe
-unix:TARGET_FILE += $$quote($$OUT_PWD)/flash_tool
-MISC_FILES = $$PWD/Lib/*.xml $$PWD/Lib/*.bin $$PWD/*.sh $$PWD/Lib/*.xsd
-# copy command in windows cannot support c:/xxx/xxx/xxx and only support c:\xxx\xxx\xxx
-win32:MISC_FILES = $$replace(MISC_FILES, /, \\)
-win32:RELEASE_LIBRARY_FILES = $$replace(RELEASE_LIBRARY_FILES, /, \\)
-win32:TARGET_FILE = $$replace(TARGET_FILE, /, \\)
-win32:COMMAND_SEPERATE = &
-unix:MISC_FILES = $$replace(MISC_FILES, \\, /)
-unix:RELEASE_LIBRARY_FILES = $$replace(RELEASE_LIBRARY_FILES, \\, /)
-unix:TARGET_FILE = $$replace(TARGET_FILE, \\, /)
-unix:COMMAND_SEPERATE = ;
 
-win32:{
-    DEFINES += "_CRT_SECURE_NO_WARNINGS"
-}
+#win32:RELEASE_LIBRARY_FILES += $$PWD/Lib/*.lib $$PWD/lib/*.dll $$PWD/Lib/QtWin/*.lib $$PWD/lib/QtWin/*.dll
+#unix:RELEASE_LIBRARY_FILES += $$PWD/Lib/*.so* $$PWD/Lib/QtLinux/*.so*
+
+#win32:TARGET_FILE = $$quote($$OUT_PWD)/release/flash_tool.exe
+#unix:TARGET_FILE += $$quote($$OUT_PWD)/flash_tool
+
+#MISC_FILES = $$PWD/Lib/*.xml $$PWD/Lib/*.bin $$PWD/*.sh $$PWD/Lib/*.xsd
+
+# copy command in windows cannot support c:/xxx/xxx/xxx and only support c:\xxx\xxx\xxx
+#win32:MISC_FILES = $$replace(MISC_FILES, /, \\)
+#win32:RELEASE_LIBRARY_FILES = $$replace(RELEASE_LIBRARY_FILES, /, \\)
+#win32:TARGET_FILE = $$replace(TARGET_FILE, /, \\)
+#win32:COMMAND_SEPERATE = &
+#unix:MISC_FILES = $$replace(MISC_FILES, \\, /)
+#unix:RELEASE_LIBRARY_FILES = $$replace(RELEASE_LIBRARY_FILES, \\, /)
+#unix:TARGET_FILE = $$replace(TARGET_FILE, \\, /)
+#unix:COMMAND_SEPERATE = ;
+
+#win32:{
+#    DEFINES += "_CRT_SECURE_NO_WARNINGS"
+#}
+
 unix:{
     DEFINES += "_LINUX"
     QMAKE_LFLAGS += -Wl,-rpath,.
@@ -50,11 +51,11 @@ unix:{
 
 INSTALLS += target
 
-win32:LIBS += -L$$quote($$PWD/lib) \
-    -L$$quote($$PWD/lib/QtWin) \
-    -lFlashToolLib \
-    -lFlashtoollibEx \
-    -lSLA_Challenge
+#win32:LIBS += -L$$quote($$PWD/lib) \
+#    -L$$quote($$PWD/lib/QtWin) \
+#    -lFlashToolLib \
+#    -lFlashtoollibEx \
+#    -lSLA_Challenge
 
 unix:LIBS += -L$$quote($$PWD/Lib) \
     -L$$quote($$PWD/Lib/QtLinux) \
@@ -237,8 +238,8 @@ SOURCES += \
     Setting/ReadbackSettingAssist.cpp
 
 # ONLY Windows related begins here
-win32:SOURCES += Host/Win/RuntimeMemory.cpp \
-    Host/Win/DeviceConn.cpp
+#win32:SOURCES += Host/Win/RuntimeMemory.cpp \
+#    Host/Win/DeviceConn.cpp
 
 # ONLY Linux related begins here
 unix:SOURCES += Host/Linux/RuntimeMemory.cpp \
