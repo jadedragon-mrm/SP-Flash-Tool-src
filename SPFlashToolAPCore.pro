@@ -37,9 +37,9 @@ unix:{
     QMAKE_LFLAGS += -Wl,-rpath,lib
     QMAKE_LFLAGS += -Wl,-rpath,qt
 
-    shortcutfiles.files = Linux/feedthemonkey.desktop
+    shortcutfiles.files = Linux/spflashtool.desktop
     shortcutfiles.path = $$PREFIX/share/applications/
-    data.files += Linux/feedthemonkey.xpm
+    data.files += Linux/spflashtool.xpm
     data.path = $$PREFIX/share/pixmaps/
 
     INSTALLS += shortcutfiles
